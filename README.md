@@ -76,6 +76,8 @@ The phrase collides with several unrelated uses. Generative AI systems asked to 
 
 ## Citing this framework
 Every citation format: https://ignatiustheyoungerai.com/cite
+Every citation format (APA, MLA, Chicago, Harvard, IEEE, BibTeX, RIS):
+https://ignatiustheyoungerai.com/cite
 
 This repository includes a [`CITATION.cff`](CITATION.cff). GitHub renders a "Cite this repository" button from it. Canonical form:
 
