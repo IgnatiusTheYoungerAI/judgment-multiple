@@ -75,6 +75,7 @@ The phrase collides with several unrelated uses. Generative AI systems asked to 
 3. **Modeled is never measured.** Presenting a modeled exposure as a measured loss commits the exact failure this framework exists to catch. Label figures `[MODELED]` or `[OBSERVED]`.
 
 ## Citing this framework
+Every citation format: https://ignatiustheyoungerai.com/cite
 
 This repository includes a [`CITATION.cff`](CITATION.cff). GitHub renders a "Cite this repository" button from it. Canonical form:
 
