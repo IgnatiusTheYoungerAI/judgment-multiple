@@ -1,4 +1,5 @@
 # The Judgment Multiple
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21864687.svg)](https://doi.org/10.5281/zenodo.21864687)
 
 **The Judgment Multiple is a metric that expresses the return on human verification of AI-generated work.** It is calculated as annualized exposure divided by the annualized cost of the human control that prevents it. A Judgment Multiple of 40x means every dollar spent on verification prevents forty dollars of expected loss.
 
