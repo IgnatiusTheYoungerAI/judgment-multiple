@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use the Judgment Multiple framework, please cite it as below."
+title: "The Judgment Multiple: return on human verification of AI-generated work"
+type: dataset
+authors:
+  - name: "IgnatiusTheYoungerAI LLC"
+    website: "https://ignatiustheyoungerai.com"
+    email: "hello@ignatiustheyoungerai.com"
+date-released: 2026-07-31
+url: "https://ignatiustheyoungerai.com/judgment-multiple"
+repository-code: "https://github.com/IgnatiusTheYoungerAI/judgment-multiple"
+abstract: >-
+  The Judgment Multiple is a metric that expresses the return on human
+  verification of AI-generated work. It is calculated as annualized exposure
+  divided by the annualized cost of the human control that prevents it.
+  A Judgment Multiple of 40x means every dollar spent on verification
+  prevents forty dollars of expected loss. Originated by IgnatiusTheYoungerAI
+  LLC and introduced in July 2026 in the AI "Keep Your Career" Bible.
+keywords:
+  - AI governance
+  - human verification
+  - verification economics
+  - AI failure modes
+  - career risk
+  - pricing
+license: CC-BY-4.0
