@@ -3,7 +3,8 @@ import React from "react";
 import { Platform, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LoopPreview } from "../components/LoopPreview";
-import { Badge, Body, PrimaryButton, SecondaryButton, TextButton } from "../components/ui";
+import { PounceIn } from "../components/motion";
+import { Badge, Body, Caption, PrimaryButton, SecondaryButton, TextButton } from "../components/ui";
 import { notify, reportOutput } from "../lib/dialog";
 import { REGEN_CAP, useStore } from "../state/store";
 import { RootStackParamList } from "../navigation";
@@ -31,9 +32,9 @@ export function PreviewScreen({ navigation, route }: Props) {
   function onShare() {
     const nav = typeof navigator !== "undefined" ? (navigator as Navigator) : undefined;
     if (Platform.OS === "web" && nav && "share" in nav) {
-      nav.share({ title: "CatLoop", text: "Made with CatLoop — AI cat video maker" }).catch(() => {});
+      nav.share({ title: "Catloop", text: "Made with Catloop" }).catch(() => {});
     } else {
-      notify("Share", "Your AI video is ready to share to TikTok, Reels, or Shorts.");
+      notify("Share", "Your video is ready for TikTok, Reels, or Shorts.");
     }
   }
 
@@ -52,19 +53,21 @@ export function PreviewScreen({ navigation, route }: Props) {
         </Pressable>
       </View>
       <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
-        <Badge label="AI-generated · 8s" tone="ai" />
-        <LoopPreview photoUri={video.photoUri} seed={video.seed} />
+        <Badge label="AI-generated · 8s" tone="ember" />
+        <PounceIn>
+          <LoopPreview photoUri={video.photoUri} seed={video.seed} />
+        </PounceIn>
         {video.prompt ? <Body style={styles.prompt}>&ldquo;{video.prompt}&rdquo;</Body> : null}
-        <Body style={styles.meta}>
-          Regenerations used: {video.regens}/{REGEN_CAP}
-        </Body>
+        <Caption>
+          Do-overs used: {video.regens}/{REGEN_CAP}
+        </Caption>
         <View style={styles.actions}>
           <SecondaryButton label="Share" onPress={onShare} style={styles.flex} />
           <SecondaryButton label="Delete" onPress={onDelete} style={styles.flex} />
         </View>
         <TextButton
           label="Report AI output"
-          color={colors.danger}
+          color={colors.ember}
           onPress={() => reportOutput(() => onDelete())}
           style={styles.reportLink}
         />
@@ -74,12 +77,11 @@ export function PreviewScreen({ navigation, route }: Props) {
 }
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.bg },
+  safe: { flex: 1, backgroundColor: colors.paper },
   topBar: { paddingHorizontal: spacing(5), paddingTop: spacing(2), alignItems: "flex-end" },
-  close: { color: colors.textDim, fontSize: 20, padding: 4 },
+  close: { color: colors.inkDim, fontSize: 20, padding: 4 },
   scroll: { padding: spacing(5), gap: spacing(4), paddingBottom: spacing(10) },
-  prompt: { fontFamily: font.medium, color: colors.text, fontSize: 16, fontStyle: "italic" },
-  meta: { fontSize: 13 },
+  prompt: { fontFamily: font.medium, color: colors.ink, fontSize: 16, fontStyle: "italic" },
   actions: { flexDirection: "row", gap: spacing(3) },
   flex: { flex: 1 },
   reportLink: { textAlign: "center", alignSelf: "center", marginTop: spacing(2) },

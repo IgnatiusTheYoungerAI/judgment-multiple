@@ -29,7 +29,7 @@ export function MainScreen({ navigation }: Props) {
   return (
     <SafeAreaView style={styles.safe} edges={["top", "bottom"]}>
       <View style={styles.header}>
-        <Text style={styles.brand}>CatLoop</Text>
+        <Text style={styles.brand}>Catloop</Text>
         <Text style={styles.headerTitle}>{TITLES[tab]}</Text>
       </View>
 
@@ -37,13 +37,9 @@ export function MainScreen({ navigation }: Props) {
         {tab === "create" && (
           <CreateTab onLocked={() => navigation.navigate("Paywall", { context: "locked" })} />
         )}
-        {tab === "library" && (
-          <LibraryTab onOpen={(id) => navigation.navigate("Preview", { videoId: id })} />
-        )}
+        {tab === "library" && <LibraryTab onOpen={(id) => navigation.navigate("Preview", { videoId: id })} />}
         {tab === "settings" && (
-          <SettingsTab
-            onReset={() => navigation.reset({ index: 0, routes: [{ name: "Onboarding" }] })}
-          />
+          <SettingsTab onReset={() => navigation.reset({ index: 0, routes: [{ name: "Onboarding" }] })} />
         )}
       </View>
 
@@ -52,7 +48,7 @@ export function MainScreen({ navigation }: Props) {
           const active = t.key === tab;
           return (
             <Pressable key={t.key} style={styles.tabItem} onPress={() => setTab(t.key)}>
-              <Text style={[styles.tabIcon, { opacity: active ? 1 : 0.5 }]}>{t.icon}</Text>
+              <Text style={[styles.tabIcon, { opacity: active ? 1 : 0.45 }]}>{t.icon}</Text>
               <Text style={[styles.tabLabel, active && styles.tabLabelActive]}>{t.label}</Text>
             </Pressable>
           );
@@ -63,7 +59,7 @@ export function MainScreen({ navigation }: Props) {
 }
 
 const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: colors.bg },
+  safe: { flex: 1, backgroundColor: colors.paper },
   header: {
     paddingHorizontal: spacing(5),
     paddingTop: spacing(2),
@@ -72,19 +68,19 @@ const styles = StyleSheet.create({
     alignItems: "baseline",
     justifyContent: "space-between",
   },
-  brand: { fontFamily: font.brandBold, color: colors.text, fontSize: 24 },
-  headerTitle: { fontFamily: font.semi, color: colors.textDim, fontSize: 15 },
+  brand: { fontFamily: font.display, color: colors.ember, fontSize: 26 },
+  headerTitle: { fontFamily: font.semi, color: colors.inkDim, fontSize: 15 },
   content: { flex: 1 },
   tabBar: {
     flexDirection: "row",
     borderTopWidth: 1,
-    borderTopColor: colors.cardBorder,
-    backgroundColor: colors.bgElevated,
+    borderTopColor: colors.border,
+    backgroundColor: colors.surface,
     paddingTop: spacing(2),
     paddingBottom: spacing(2),
   },
   tabItem: { flex: 1, alignItems: "center", gap: 3, paddingVertical: 4 },
   tabIcon: { fontSize: 20 },
-  tabLabel: { fontFamily: font.medium, color: colors.textFaint, fontSize: 12 },
-  tabLabelActive: { color: colors.primary },
+  tabLabel: { fontFamily: font.medium, color: colors.inkFaint, fontSize: 12 },
+  tabLabelActive: { color: colors.ember },
 });

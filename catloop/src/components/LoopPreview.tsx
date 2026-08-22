@@ -1,13 +1,38 @@
 import { LinearGradient } from "expo-linear-gradient";
-import React, { useEffect, useRef } from "react";
-import { Animated, Easing, Image, StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useRef, useState } from "react";
+import { Animated, Easing, StyleSheet, Text, View } from "react-native";
 import { colors, font, gradientForSeed, radius } from "../theme";
+import { PurrLoop } from "./motion";
+import { Tag } from "./ui";
+
+const STATUS_MESSAGES = [
+  "Warming up the catnip engine…",
+  "Herding the pixels…",
+  "Consulting the cat council…",
+  "Fluffing every whisker…",
+  "Almost purrfect…",
+];
+
+// Rotating status text on a slow 1400ms crossfade (Purr-Loop's calm cadence).
+function RotatingStatus() {
+  const [i, setI] = useState(0);
+  const op = useRef(new Animated.Value(1)).current;
+  useEffect(() => {
+    const id = setInterval(() => {
+      Animated.timing(op, { toValue: 0, duration: 350, useNativeDriver: false }).start(() => {
+        setI((v) => (v + 1) % STATUS_MESSAGES.length);
+        Animated.timing(op, { toValue: 1, duration: 350, useNativeDriver: false }).start();
+      });
+    }, 1400);
+    return () => clearInterval(id);
+  }, [op]);
+  return <Animated.Text style={[styles.status, { opacity: op }]}>{STATUS_MESSAGES[i]}</Animated.Text>;
+}
 
 /**
- * Stands in for the rendered 8-second AI clip. A real build plays the signed
- * MP4 from the render job via expo-av; here we animate the source frame so the
- * product loop (generate -> preview -> save/share) is fully demonstrable
- * without a live video model. Always labelled AI-generated.
+ * Stands in for the rendered 8s AI clip. Production plays the signed MP4 via
+ * expo-av; here we animate the source frame so the loop is demonstrable. Always
+ * tagged AI-generated. Generating state uses Purr-Loop (never a spinner).
  */
 export function LoopPreview({
   photoUri,
@@ -40,7 +65,6 @@ export function LoopPreview({
 
   const scale = loop.interpolate({ inputRange: [0, 0.5, 1], outputRange: [1.04, 1.12, 1.04] });
   const translateX = loop.interpolate({ inputRange: [0, 1], outputRange: [-10, 10] });
-  const sheen = loop.interpolate({ inputRange: [0, 1], outputRange: [-260, 260] });
 
   return (
     <View style={styles.frame}>
@@ -52,45 +76,26 @@ export function LoopPreview({
           style={[StyleSheet.absoluteFill, { transform: [{ scale }, { translateX }] }]}
         />
       ) : (
-        <Animated.View
-          style={[
-            StyleSheet.absoluteFill,
-            styles.center,
-            { transform: [{ scale }, { translateX }] },
-          ]}
-        >
+        <Animated.View style={[StyleSheet.absoluteFill, styles.center, { transform: [{ scale }, { translateX }] }]}>
           <Text style={styles.cat}>🐱</Text>
         </Animated.View>
       )}
 
-      <LinearGradient
-        colors={["transparent", "rgba(11,7,19,0.55)"]}
-        style={StyleSheet.absoluteFill}
-      />
+      <LinearGradient colors={["transparent", "rgba(31,41,55,0.35)"]} style={StyleSheet.absoluteFill} />
 
-      <Animated.View
-        pointerEvents="none"
-        style={[styles.sheen, { transform: [{ translateX: sheen }, { rotate: "18deg" }] }]}
-      />
+      <Tag label="AI-generated" style={styles.aiTag} />
 
-      <View style={styles.aiTag}>
-        <View style={styles.dot} />
-        <Text style={styles.aiTagText}>AI-generated</Text>
-      </View>
-
-      {watermark ? (
-        <View style={styles.watermark} pointerEvents="none">
-          <Text style={styles.watermarkText}>CatLoop · demo</Text>
-        </View>
-      ) : null}
+      {watermark ? <Tag label="demo" style={styles.watermark} /> : null}
 
       {generating ? (
         <View style={styles.genOverlay}>
-          <Text style={styles.genLabel}>Rendering 8s clip…</Text>
+          <PurrLoop>
+            <Text style={styles.genCat}>🐱</Text>
+          </PurrLoop>
+          <RotatingStatus />
           <View style={styles.progressTrack}>
             <View style={[styles.progressFill, { width: `${Math.round(progress * 100)}%` }]} />
           </View>
-          <Text style={styles.genPct}>{Math.round(progress * 100)}%</Text>
         </View>
       ) : null}
     </View>
@@ -103,85 +108,30 @@ const styles = StyleSheet.create({
     aspectRatio: 4 / 5,
     borderRadius: radius.lg,
     overflow: "hidden",
-    backgroundColor: colors.card,
+    backgroundColor: colors.surface,
     borderWidth: 1,
-    borderColor: colors.cardBorder,
+    borderColor: colors.border,
   },
   center: { alignItems: "center", justifyContent: "center" },
   cat: { fontSize: 128 },
-  sheen: {
-    position: "absolute",
-    top: -60,
-    bottom: -60,
-    width: 90,
-    backgroundColor: "rgba(255,255,255,0.14)",
-  },
-  aiTag: {
-    position: "absolute",
-    top: 12,
-    left: 12,
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "rgba(11,7,19,0.6)",
-    borderRadius: radius.pill,
-    paddingHorizontal: 10,
-    paddingVertical: 6,
-  },
-  dot: {
-    width: 7,
-    height: 7,
-    borderRadius: 4,
-    backgroundColor: colors.mint,
-    marginRight: 6,
-  },
-  aiTagText: {
-    fontFamily: font.semi,
-    color: colors.text,
-    fontSize: 12,
-  },
-  watermark: {
-    position: "absolute",
-    bottom: 12,
-    right: 12,
-    backgroundColor: "rgba(11,7,19,0.5)",
-    borderRadius: radius.sm,
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-  },
-  watermarkText: {
-    fontFamily: font.medium,
-    color: colors.textDim,
-    fontSize: 11,
-  },
+  aiTag: { position: "absolute", top: 12, left: 12 },
+  watermark: { position: "absolute", bottom: 12, right: 12 },
   genOverlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(11,7,19,0.55)",
+    backgroundColor: "rgba(255,247,237,0.82)",
     alignItems: "center",
     justifyContent: "center",
     padding: 24,
+    gap: 16,
   },
-  genLabel: {
-    fontFamily: font.semi,
-    color: colors.text,
-    fontSize: 15,
-    marginBottom: 14,
-  },
+  genCat: { fontSize: 72 },
+  status: { fontFamily: font.semi, color: colors.ink, fontSize: 15, textAlign: "center" },
   progressTrack: {
     width: "82%",
     height: 8,
-    borderRadius: 999,
-    backgroundColor: "rgba(255,255,255,0.16)",
+    borderRadius: radius.pill,
+    backgroundColor: colors.border,
     overflow: "hidden",
   },
-  progressFill: {
-    height: 8,
-    borderRadius: 999,
-    backgroundColor: colors.mint,
-  },
-  genPct: {
-    fontFamily: font.semi,
-    color: colors.textDim,
-    fontSize: 13,
-    marginTop: 10,
-  },
+  progressFill: { height: 8, borderRadius: radius.pill, backgroundColor: colors.ember },
 });

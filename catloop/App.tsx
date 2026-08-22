@@ -9,27 +9,28 @@ import {
   Inter_700Bold,
   useFonts,
 } from "@expo-google-fonts/inter";
-import { DarkTheme, NavigationContainer, Theme } from "@react-navigation/native";
+import { DefaultTheme, NavigationContainer, Theme } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import * as SplashScreen from "expo-splash-screen";
 import React, { useCallback, useEffect } from "react";
-import { ActivityIndicator, StyleSheet, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { PurrLoop } from "./src/components/motion";
 import { RootNavigator } from "./src/navigation";
 import { AppProvider, useStore } from "./src/state/store";
-import { colors } from "./src/theme";
+import { colors, font } from "./src/theme";
 
 SplashScreen.preventAutoHideAsync().catch(() => {});
 
 const navTheme: Theme = {
-  ...DarkTheme,
+  ...DefaultTheme,
   colors: {
-    ...DarkTheme.colors,
-    background: colors.bg,
-    card: colors.bg,
-    primary: colors.primary,
-    text: colors.text,
-    border: colors.cardBorder,
+    ...DefaultTheme.colors,
+    background: colors.paper,
+    card: colors.paper,
+    primary: colors.ember,
+    text: colors.ink,
+    border: colors.border,
   },
 };
 
@@ -38,13 +39,15 @@ function Gate() {
   if (!state.ready) {
     return (
       <View style={styles.loading}>
-        <ActivityIndicator color={colors.primary} />
+        <PurrLoop>
+          <Text style={styles.loadingCat}>🐱</Text>
+        </PurrLoop>
       </View>
     );
   }
   return (
     <NavigationContainer theme={navTheme}>
-      <StatusBar style="light" />
+      <StatusBar style="dark" />
       <RootNavigator />
     </NavigationContainer>
   );
@@ -80,5 +83,6 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  loading: { flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: colors.bg },
+  loading: { flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: colors.paper },
+  loadingCat: { fontSize: 64 },
 });
