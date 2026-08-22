@@ -1,0 +1,4 @@
+{
+  "name": "The Judgment Multiple",
+  "install": "python3 -m py_compile judgment_multiple.py"
+}
