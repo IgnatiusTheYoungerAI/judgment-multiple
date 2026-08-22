@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "CatLoop",
+    "slug": "catloop-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "catloop",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "backgroundColor": "#0B0713"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.ignatiustheyoungerai.catloop",
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "CatLoop needs access to your photos so you can turn a cat photo into an AI-generated video. Your selected photo is sent to a third-party video model to generate the clip."
+      }
+    },
+    "android": {
+      "package": "com.ignatiustheyoungerai.catloop"
+    },
+    "web": {
+      "bundler": "metro"
+    },
+    "plugins": ["expo-image-picker"]
+  }
+}

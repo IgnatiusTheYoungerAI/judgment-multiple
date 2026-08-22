@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.pyc
+
+# Node / Expo
+catloop/node_modules/
+catloop/.expo/
+catloop/dist/
+catloop/web-build/
+npm-debug.*
+*.log
+.DS_Store
