@@ -58,20 +58,20 @@ Steps:
 | --- | --- |
 | Product ID | `catloop.starter.weekly` |
 | Duration | **1 Week** |
-| Price | **$4.99** USD (Apple price tier; avoid odd $4.95 if tiering fights you — use Clean tier) |
+| Price | **$4.99** USD |
 | Level | 1 (only product in group for v1) |
 
 - [ ] Create subscription, add localization:  
   - Display name: `CatLoop Weekly`  
-  - Description: `1 AI cat video per week with up to 3 regenerations each. Cancel anytime.`
+  - Description: `1 AI cat video per week (5 seconds) with up to 2 regenerations. Cancel anytime.`
 
 ### Introductory offer (required for v1 funnel)
 
 - [ ] Subscription → Pricing → **Set Up Introductory Offer**
   - Type: **Pay as you go**
   - Duration: **1 Week**
-  - Price: **$1.49** (or closest tier ≤ $1.49)
-  - Availability: start today → far future (or rolling)
+  - Price: **$1.99** (or closest tier)
+  - Availability: start today → far future
   - Storefronts: start **United States only** for soft launch
 
 ### Review attachment
@@ -116,7 +116,7 @@ Apple’s standard EULA can be used; custom Terms still recommended for AI + cre
 ```
 CatLoop turns your cat photos into short AI-generated videos for TikTok, Reels, and Shorts.
 
-Pick a photo, add a mood or caption, and get an 8-second clip made with AI — ready to save and share.
+Pick a photo, add a mood or caption, and get a 5-second clip made with AI — ready to save and share.
 ```
 
 Must include somewhere visible: videos are **AI-generated**; subscription unlocks generation; cancel in Settings.
@@ -144,7 +144,7 @@ CatLoop is on the books when:
 1. Paid Apps + Tax + Banking = Active  
 2. Small Business Program enrolled (or explicit skip reason)  
 3. App record exists with final bundle ID  
-4. `catloop.starter.weekly` + 1-week $1.49 intro exist in Connect  
+4. `catloop.starter.weekly` + 1-week **$1.99** intro exist in Connect  
 5. Privacy & Support URLs resolve  
 6. Sandbox purchase of intro → renewal path tested  
 

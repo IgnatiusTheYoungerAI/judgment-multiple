@@ -1,43 +1,45 @@
-# CatLoop — Pricing (simple, App Store–legal)
+# CatLoop — Pricing (simple, App Store–legal, profit-first)
 
-## Why the old $1.45 / 3-day paid trial died
-
-Apple Introductory Offers on a **1 Week** subscription do **not** allow a 3-day paid period. Pay up front starts at **1 month**. Free trials can be 3 days; paid intros on weekly are **pay as you go by the week**.
+Full logic: [`PROFIT_MODEL.md`](./PROFIT_MODEL.md)
 
 ## Live SKUs (v1)
 
 | SKU | Customer price | Entitlement |
 | --- | --- | --- |
-| `catloop.starter.weekly` + intro | **$1.49** for **1 week** (pay as you go intro) | **3 videos**, 3 regens each (intro week only) |
-| `catloop.starter.weekly` ongoing | **$4.99 / week** | **1 video / week**, 3 regens each |
+| `catloop.starter.weekly` + intro | **$1.99** for **1 week** (pay as you go intro) | **1 video**, **2** regens |
+| `catloop.starter.weekly` ongoing | **$4.99 / week** | **1 video / week**, **2** regens |
 
-Configure in App Store Connect as one weekly auto-renewable subscription with an Introductory Offer. One intro redemption per subscription group per customer.
+Clip: **5 seconds**, **720p**, no native model audio (optional free music bed in-app).
 
-## Cost floor (worst case)
+## Cost floor (planning)
 
-- Model: Kling v2.5 Turbo @ **$0.062 / sec**
-- Clip: **8 sec** → **$0.496 / attempt**
-- Cap: **3 attempts / video** → **~$1.49 / video** if every regen is used
+- Planning rate: **$0.10 / sec** (2026 Kling-class buffer; re-quote quarterly)
+- 5s attempt: **$0.50**
+- Cap 2 attempts: **$1.00 / video** worst case
 
-## After Apple’s cut (US / Small Business Program @ 15%)
+## Contribution after Apple (Small Business 15%)
 
-| | Gross | Net @ 15% | Net @ 30% | Worst-case COGS | Notes |
-| --- | --- | --- | --- | --- | --- |
-| Intro week (3 videos × full regen) | $1.49 | $1.27 | $1.04 | ~$4.46 | **Acquisition hole** — expected; paid by renewals |
-| Ongoing week (1 video × full regen) | $4.99 | $4.24 | $3.49 | ~$1.49 | **~$2.75** buffer @ 15% |
+| | Gross | Net @ 15% | Worst-case COGS | Contribution |
+| --- | --- | --- | --- | --- |
+| Intro week | $1.99 | $1.69 | $1.00 | **+$0.69** |
+| Ongoing week | $4.99 | $4.24 | $1.00 | **+$3.24** |
 
-Intro week is allowed to lose money. Do not “fix” it by adding videos/regens.
+Intro is **not** a planned loss. Do not add intro videos or regens to “feel generous.”
+
+@ 30% Apple, ongoing worst-case contribution ≈ **$2.49** — at the floor. Re-price or cut regen before SBP lapses.
 
 ## Rules
 
-- Never raise videos/week, regen cap, clip length, or model tier without a new worst-case pass after Apple’s cut  
-- Stay on Small Business Program math until proceeds approach $1M across associated accounts  
-- US soft launch first; re-check China/EU commission schedules before expanding  
+- Worst-case ongoing contribution **≥ $2.50** @ 15%
+- Never raise videos/week, regen, seconds, or model tier without a new pass
+- LTV:CAC **≥ 3×** before scaling ads
+- Extra demand → consumable “Extra Video” later, not a fatter weekly allowance
 
 ## Deferred
 
 | SKU | When |
 | --- | --- |
-| Studio (Veo + audio) | After Starter retention is proven |
+| Extra Video consumable | When users hit the 1/week wall and still love output |
 | Annual Starter | After weekly survival curves exist |
-| Free tier | Never for v1 |
+| Studio (Veo + audio + longer) | Own price tier; never bleed into Starter |
+| Free tier | Never |

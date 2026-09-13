@@ -46,6 +46,7 @@ One ban on CatLoop can burn the whole multi-app plan.
 | --- | --- |
 | Share rate per successful render | Rising week over week |
 | Intro → paid week 2 renewal | ≥ ~25%+ (watch closely) |
+| Contribution / paid week (typical) | Track vs $3+ target |
 | ASA CPI vs LTV (after Apple + COGS) | LTV:CAC ≥ 3x before scaling |
 | Refund / dispute rate | Stay low; kill creatives that bait |
 

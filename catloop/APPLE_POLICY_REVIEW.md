@@ -16,16 +16,16 @@ The old plan (`$1.45 for 3 days, then $4.95/week`) **cannot be configured as a n
 | Pay as you go | **1–12 weeks** at a discounted weekly price |
 | Pay up front | **1 / 2 / 3 / 6 months or 1 year only** — not 3 days |
 
-**v1 compliant offer (locked):**
+**v1 compliant offer (locked — profit-first):**
 
 | Phase | Store config | User gets |
 | --- | --- | --- |
-| Intro week | Weekly sub + **Pay as you go** intro @ **$1.49 / week for 1 week** | **3 videos**, 3 regens each |
-| Ongoing | **$4.99 / week** (nearest clean price point to $4.95) | **1 video / week**, 3 regens |
+| Intro week | Weekly sub + **Pay as you go** intro @ **$1.99 / week for 1 week** | **1** × **5s** video, **2** regens |
+| Ongoing | **$4.99 / week** | **1** × **5s** video / week, **2** regens |
 
-Why this wins: still impulse-priced, card-gated via Apple, legal in Connect, preserves “cheap first week → prove product → renew” economics. See [`PRICING_SIMPLE.md`](./PRICING_SIMPLE.md).
+Defaults: 720p, no native model audio. Contribution math: [`PROFIT_MODEL.md`](./PROFIT_MODEL.md).
 
-**Do not** fake a 3-day paid trial with a consumable + separate sub — high 3.1.2 rejection risk and messy entitlement state.
+Why this wins: impulse-priced, Connect-legal, **intro week is not a planned COGS loss**, ongoing clears ≥ $2.50 worst-case contribution @ 15% Apple.
 
 ---
 
@@ -109,7 +109,7 @@ CatLoop generates short AI videos from user cat photos/prompts.
 
 AI: User photo + text prompt are sent to [PROVIDER NAME] (third-party video model) only after explicit in-app consent (screen: AI Processing Consent). Users can revoke in Settings → Privacy.
 
-Subscriptions: One auto-renewable weekly product (catloop.starter.weekly) with a 1-week pay-as-you-go introductory price, then standard weekly price. Credits and regen caps enforced server-side.
+Subscriptions: One auto-renewable weekly product (catloop.starter.weekly) with a 1-week pay-as-you-go introductory price ($1.99), then $4.99/week. Each period: 1×5s video, max 2 regens, server-enforced.
 
 Demo: Use Sign in with Apple / sandbox account [EMAIL]. Backend will be online during review.
 

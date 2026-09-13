@@ -7,7 +7,7 @@ Full policy map: [`APPLE_POLICY_REVIEW.md`](./APPLE_POLICY_REVIEW.md).
 
 - [ ] Paid Apps Agreement + banking + tax Active
 - [ ] Small Business Program enrolled (or documented skip)
-- [ ] `catloop.starter.weekly` + 1-week pay-as-you-go intro Ready / attached to version
+- [ ] `catloop.starter.weekly` + 1-week pay-as-you-go **$1.99** intro Ready / attached to version
 
 ## Metadata
 
@@ -22,7 +22,8 @@ Full policy map: [`APPLE_POLICY_REVIEW.md`](./APPLE_POLICY_REVIEW.md).
 ## Subscriptions (3.1.2)
 
 - [ ] StoreKit / IAP only for unlocks (no external checkout CTA in v1)
-- [ ] Paywall shows intro price + duration, then **$X.XX/week**, auto-renew, cancel ≥24h before in Settings
+- [ ] Paywall shows intro **$1.99** first week, then **$4.99/week**, auto-renew, cancel ≥24h before in Settings
+- [ ] Entitlements match books: 1×5s video / period, max 2 regens, server-enforced
 - [ ] No trial toggles, fake countdowns, or hidden post-intro price
 - [ ] Restore Purchases works
 - [ ] Terms of Use + Privacy links on paywall
