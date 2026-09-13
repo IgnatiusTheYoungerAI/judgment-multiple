@@ -33,30 +33,34 @@ This is the source of truth for product, pricing, and App Store compliance. The 
 
 ---
 
-## 2. Pricing (resolved)
+## 2. Pricing (resolved — App Store–legal)
 
-**Decision:** Starter (Trial + Weekly) replaces Free + Creator for launch. Studio is a later upsell, not part of v1.
+**Decision:** Starter weekly replaces Free + Creator for launch. Studio is a later upsell, not part of v1.
+
+**Policy fix:** A `$1.45 / 3-day paid trial` is **not** a valid Introductory Offer on a weekly sub (Apple only allows 3-day as a *free* trial; paid intros on weekly are week-based). v1 uses a **1-week pay-as-you-go intro**.
 
 | Step | Price | What they get | Regen hard-cap |
 | --- | --- | --- | --- |
 | Demo (pre-paywall) | $0 | 1 watermarked sample from *our* stock cat (not their photo) | 0 |
-| Trial | **$1.45** once, **3 days** | 3 videos | **3** per video |
-| Starter | **$4.95 / week** auto-renew | **1 video / week** | **3** per video |
+| Intro week | **$1.49** for **1 week** (IAP intro) | **3 videos** | **3** per video |
+| Starter | **$4.99 / week** auto-renew | **1 video / week** | **3** per video |
+
+Details: [`PRICING_SIMPLE.md`](./PRICING_SIMPLE.md) · Policy: [`APPLE_POLICY_REVIEW.md`](./APPLE_POLICY_REVIEW.md) · Connect steps: [`APP_STORE_CONNECT_SETUP.md`](./APP_STORE_CONNECT_SETUP.md)
 
 ### Why this beats the old stack
 
-- Impulse price (< $5/week) matches how subscription apps actually make money.
-- Quality stays on **Kling v2.5 Turbo** so the trial earns the renewal (not Runway’s cheapest draft).
-- Worst-case unit economics (every regen burned): ~**58% gross margin before Apple**; after Apple Small Business Program (**15%**), still healthy. Plan to stay under $1M/year across the account until the product is proven, or re-price when the 30% rate applies.
-- 2 videos/week was tested and rejected — weekly churn is too fast; thinner margin fails LTV:CAC.
-- Freemium Free → paid at 3–5% conversion made the old mix net-negative. Don’t subsidize non-payers on an expensive video API.
+- Impulse price (&lt; $5/week) matches how subscription apps actually make money.
+- Quality stays on **Kling v2.5 Turbo** so week one earns the renewal.
+- Intro week can lose money on COGS (acquisition); ongoing weeks hold margin after Apple’s **15%** Small Business cut.
+- 2 videos/week ongoing was tested and rejected — weekly churn is too fast for thinner margin.
+- Freemium Free → paid at 3–5% made the old mix net-negative. Don’t subsidize non-payers on an expensive video API.
 
 ### Apple math (plan with it)
 
-| | Trial $1.45 | Weekly $4.95 |
+| | Intro $1.49 | Weekly $4.99 |
 | --- | --- | --- |
-| Net @ 15% Apple | $1.23 | $4.21 |
-| Net @ 30% Apple | $1.02 | $3.47 |
+| Net @ 15% Apple | $1.27 | $4.24 |
+| Net @ 30% Apple | $1.04 | $3.49 |
 | Worst-case COGS (Kling, 8s × 3 attempts) | ~$1.49 / video | ~$1.49 / video |
 
 **Rule:** Never raise regen caps or video count without re-running worst-case COGS after Apple’s cut. Caps are product ceilings, not marketing copy.
@@ -81,10 +85,10 @@ This is the source of truth for product, pricing, and App Store compliance. The 
 
 | Metric | Target (first 90 days) |
 | --- | --- |
-| Trial start → paid week 1 | ≥ 25% (Adapty short-trial median) |
+| Intro week → paid renewal | ≥ 25% (short-trial / intro benchmarks) |
 | Week-4 retention (paid) | Track; improve before raising prices |
 | Support / chargeback rate | Keep low; pause ads if chargebacks spike |
-| App Review | First submission approved without Guideline 3.1.2 / AI rejection |
+| App Review | First submission approved without 3.1.2 / 5.1.2(i) rejection |
 
 ---
 
@@ -94,23 +98,23 @@ You will launch many apps on one Developer Program account. **CatLoop must be bo
 
 ### Payments (Guideline 3.1.x)
 
-- Digital video generation = **StoreKit / In-App Purchase only**. No Stripe, no “pay on web” links, no QR to checkout.
-- Auto-renewing subscription with clear: **price, period, what happens after trial, cancel anytime (Settings → Subscriptions)**.
+- Digital video generation = **StoreKit / In-App Purchase only**. No Stripe, no “pay on web” links for v1.
+- Auto-renewing **weekly** subscription (≥7 days) with clear price, period, intro → standard, cancel in Settings → Subscriptions (≥24h before renewal).
 - Paywall CTA example:  
-  `Start 3-day trial for $1.45, then $4.95/week. Cancel anytime at least 24 hours before renewal.`
-- **No trial toggles.** No fake urgency timers. No hiding the post-trial price.
+  `Start for $1.49 your first week, then $4.99/week. Cancel anytime at least 24 hours before renewal.`
+- **No trial toggles.** No fake urgency timers. No hiding the post-intro price.
 - **Restore Purchases** on paywall and in Settings.
 - Terms of Use + Privacy Policy links **on the paywall** and in the app.
-- Use StoreKit 2 / SubscriptionStoreView or RevenueCat — prices always from the store, never hardcoded.
+- StoreKit 2 or RevenueCat — prices always from the store, never hardcoded.
 
-### Generative AI
+### Generative AI + 5.1.2(i)
 
-- App Store description: state clearly that videos are **AI-generated**.
+- App Store description: videos are **AI-generated**.
 - In-app: label results as AI-generated; never imply a real camera captured the clip.
-- **Report / flag** control on every generated video (incorrect or harmful).
-- Photo upload: explicit consent that the image is sent to a third-party video model to generate a clip; not used to train *your* model unless you later get separate opt-in.
-- Safety filters: block obvious NSFW / violence prompts and reject unsafe outputs before delivery.
-- Review notes: name the provider class (e.g. third-party text/image-to-video API), what leaves the device (photo + prompt), and where the report button lives.
+- **Dedicated consent screen before first generation** naming the third-party provider, data sent (photo + prompt), and purpose; revocable in Settings.
+- **Report / flag** on every generated video.
+- Safety filters: block NSFW / cruelty / hate; reject unsafe outputs.
+- Review notes: provider name, consent location, report location, demo account.
 
 ### Privacy & account
 
@@ -155,12 +159,12 @@ iOS app (SwiftUI)
 
 1. Install → 10-second brand moment (“CatLoop”).
 2. Show one stunning sample video (stock).
-3. “Make one with your cat” → photo permission → paywall **before** their first real render (demo is enough to sell).
-4. Trial purchase → create → preview → up to 3 regens → save to Photos / share sheet.
-5. Week renews → 1 new credit. Unused credits: **no rollover** in v1 (keeps COGS predictable; say so in UI).
+3. “Make one with your cat” → photo permission → **AI consent** → paywall **before** their first real render (stock demo is enough to sell).
+4. Intro purchase → create → preview → up to 3 regens → save to Photos / share sheet.
+5. After intro week → $4.99/week → 1 new credit per week. Unused credits: **no rollover** in v1 (say so in UI).
 6. Upgrade path later: “Studio — cinematic audio” when ready.
 
-Optional soften: allow **one** real photo render only after trial start — never a free unlimited sandbox.
+Never a free unlimited personal-render sandbox.
 
 ---
 
@@ -172,10 +176,10 @@ Optional soften: allow **one** real photo render only after trial start — neve
 | Creator $24.99 / 8 videos | Cut for v1 — weekly impulse wins conversion |
 | Studio $79.99 at launch | Defer — don’t promise Veo until shipped |
 | Cap policy “higher tier = more regens” | Wrong — caps follow **$/attempt** |
-| Expected-case regen math for planning | Keep worst-case for margins; replace with telemetry later |
+| $1.45 / 3-day **paid** trial | Illegal as weekly intro offer — replaced with **$1.49 / 1 week** pay-as-you-go |
 | Side-by-side Free+Creator+Studio+Starter | Confusion — **Starter only** |
 
-Open items from the spreadsheet that are now closed for v1: Free vs Starter, regen enforcement (hard), Studio timing (later). Still open by nature: real CAC above the paywall, real regen distribution, chargeback rate — measure after launch; don’t invent.
+Closed for v1: Free vs Starter, regen enforcement, Studio timing, intro offer legality. Still measure after launch: CAC, regen distribution, refunds.
 
 ---
 

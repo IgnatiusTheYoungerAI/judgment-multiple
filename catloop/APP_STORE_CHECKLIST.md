@@ -1,44 +1,51 @@
 # CatLoop — App Store checklist
 
-Run this before every submission. Fail any row → do not upload.
+Run before every submission. Fail any row → do not upload.  
+Full policy map: [`APPLE_POLICY_REVIEW.md`](./APPLE_POLICY_REVIEW.md).
+
+## Connect / agreements
+
+- [ ] Paid Apps Agreement + banking + tax Active
+- [ ] Small Business Program enrolled (or documented skip)
+- [ ] `catloop.starter.weekly` + 1-week pay-as-you-go intro Ready / attached to version
 
 ## Metadata
 
-- [ ] Name / subtitle accurate; no “#1” or unprovable superlatives
+- [ ] Name / subtitle accurate; no “#1” or unverifiable claims
 - [ ] Description states videos are **AI-generated**
-- [ ] Screenshots and preview video match the live app (including paywall)
+- [ ] Screenshots and preview match live app (including paywall prices from StoreKit)
 - [ ] No Studio / Veo / “native audio” claims until that tier ships
-- [ ] Age rating honest; not positioned as a kids’ app
-- [ ] Privacy Policy URL and Support URL live
-- [ ] Privacy Nutrition Labels match actual collection (photos, purchases, IDs)
+- [ ] Age rating honest; not Kids Category / not “for kids”
+- [ ] Privacy Policy + Support URLs live
+- [ ] Privacy Nutrition Labels match binary (photos, purchases, IDs, usage)
 
 ## Subscriptions (3.1.2)
 
-- [ ] Only StoreKit / IAP for unlocks (no external pay links)
-- [ ] Paywall shows: trial price, trial length, then **$X.XX/week**, auto-renew, cancel ≥24h before
-- [ ] No trial toggle, no fake countdown, no hidden post-trial price
+- [ ] StoreKit / IAP only for unlocks (no external checkout CTA in v1)
+- [ ] Paywall shows intro price + duration, then **$X.XX/week**, auto-renew, cancel ≥24h before in Settings
+- [ ] No trial toggles, fake countdowns, or hidden post-intro price
 - [ ] Restore Purchases works
 - [ ] Terms of Use + Privacy links on paywall
-- [ ] Prices come from StoreKit / RevenueCat (not hardcoded)
+- [ ] Prices from StoreKit / RevenueCat — never hardcoded
 
-## AI & privacy
+## AI & privacy (5.1.2(i))
 
+- [ ] Dedicated consent screen **before** first photo/prompt leaves device; names provider + data + purpose
+- [ ] Consent revocable in Settings
 - [ ] In-app AI-generated label on results
 - [ ] Report / flag on every generated video
-- [ ] Photo permission copy explains third-party generation use
-- [ ] Consent before sending photos/prompts to the video API
-- [ ] NSFW / unsafe prompt + output filters on
-- [ ] Account deletion path works
-- [ ] Review notes explain AI provider, data leaving device, report location
+- [ ] NSFW / cruelty / unsafe filters on prompts and outputs
+- [ ] Account deletion in-app (if accounts exist)
+- [ ] Review Notes: provider, consent location, report location, demo credentials
 
 ## Product integrity
 
-- [ ] Server enforces video credits and regen caps
-- [ ] Failed provider jobs do not strand users without credit policy documented
-- [ ] Demo sample is watermarked / stock — not unlimited free personal renders
+- [ ] Server enforces credits + regen caps
+- [ ] Provider failures don’t silently eat credits (documented policy)
+- [ ] Pre-paywall demo is stock/watermarked — not unlimited personal renders
 
-## Portfolio hygiene
+## Growth / account health (5.6)
 
-- [ ] Small Business Program status confirmed (15% vs 30%)
-- [ ] No Guideline-breaking dark patterns that could mark the developer account
-- [ ] Customer support email monitored for refund / chargeback spikes after launch
+- [ ] No review gating or incentivized ratings
+- [ ] No clone/spam apps riding CatLoop
+- [ ] Support inbox monitored for refund spikes after launch
