@@ -43,3 +43,4 @@ Intro is **not** a planned loss. Do not add intro videos or regens to “feel ge
 | Annual Starter | After weekly survival curves exist |
 | Studio (Veo + audio + longer) | Own price tier; never bleed into Starter |
 | Free tier | Never |
+| House cat / Lion consumables (July deck) | Superseded — see [`DECK_RECONCILIATION.md`](./DECK_RECONCILIATION.md) |

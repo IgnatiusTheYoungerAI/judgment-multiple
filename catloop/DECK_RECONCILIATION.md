@@ -5,8 +5,6 @@
 
 Canonical pricing now: [`PROFIT_MODEL.md`](./PROFIT_MODEL.md) · [`CATLOOP_LAUNCH.md`](./CATLOOP_LAUNCH.md)
 
-**Related:** July 2026 launch deck reviewed and superseded on monetization — see [`DECK_RECONCILIATION.md`](./DECK_RECONCILIATION.md).
-
 ---
 
 ## What the deck got right (keep)

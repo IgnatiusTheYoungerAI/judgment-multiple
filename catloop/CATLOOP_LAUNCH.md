@@ -6,6 +6,8 @@
 
 **Profit doctrine:** [`PROFIT_MODEL.md`](./PROFIT_MODEL.md) — craft the first take; cap compute; never buy users below 3× LTV:CAC.
 
+**July launch deck:** Build/legal keepers; House/Lion pricing **superseded** — [`DECK_RECONCILIATION.md`](./DECK_RECONCILIATION.md).
+
 This is the source of truth for product, pricing, and App Store compliance. The old Free / Creator / Studio spreadsheet structure is retired for v1.
 
 ---
