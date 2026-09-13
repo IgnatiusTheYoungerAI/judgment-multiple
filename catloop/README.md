@@ -1,24 +1,33 @@
 # CatLoop
 
-iOS-first AI cat video app — first viral product on the Developer Program account.
+First App Store app for IgnatiusTheYoungerAI LLC — AI cat video, profit-first.
 
-**Start here:** [`PROFIT_MODEL.md`](./PROFIT_MODEL.md) → [`APPLE_POLICY_REVIEW.md`](./APPLE_POLICY_REVIEW.md) → [`APP_STORE_CONNECT_SETUP.md`](./APP_STORE_CONNECT_SETUP.md)
+## Start here
 
-## v1 in one breath
+1. **You (today):** [`OWNER_ACTIONS.md`](./OWNER_ACTIONS.md) — Connect + SBP + host legal URLs  
+2. **Plan:** [`CATLOOP_LAUNCH.md`](./CATLOOP_LAUNCH.md) · [`PROFIT_MODEL.md`](./PROFIT_MODEL.md)  
+3. **App:** [`mobile/`](./mobile/) — Expo MVP shell (onboarding → AI consent → paywall → create → preview)  
+4. **Credits:** [`backend/src/ledger.ts`](./backend/src/ledger.ts)
 
-Photo → **5s** AI video → share.  
-**$1.99 first week** (1 video, 2 regens) → **$4.99/week**.  
-720p, craft-quality first takes, hard compute caps. ~**$3.24** worst-case contribution per paid week @ 15% Apple.
+## Locked offer
 
-## Files
+`$1.99` intro week → `$4.99`/week · 1×5s · 2 attempts · 720p · StoreKit product `catloop.starter.weekly`
+
+## Docs
 
 | File | Purpose |
 | --- | --- |
-| [`PROFIT_MODEL.md`](./PROFIT_MODEL.md) | High-profit operating system + LTV:CAC |
-| [`DECK_RECONCILIATION.md`](./DECK_RECONCILIATION.md) | July launch deck vs locked model |
-| [`APPLE_POLICY_REVIEW.md`](./APPLE_POLICY_REVIEW.md) | App Store guideline map |
-| [`APP_STORE_CONNECT_SETUP.md`](./APP_STORE_CONNECT_SETUP.md) | Put CatLoop on the books |
-| [`VIRAL_LAUNCH_PLAYBOOK.md`](./VIRAL_LAUNCH_PLAYBOOK.md) | Growth without account risk |
-| [`CATLOOP_LAUNCH.md`](./CATLOOP_LAUNCH.md) | Product source of truth |
-| [`PRICING_SIMPLE.md`](./PRICING_SIMPLE.md) | SKUs + contribution table |
-| [`APP_STORE_CHECKLIST.md`](./APP_STORE_CHECKLIST.md) | Pre-submit gate |
+| [`OWNER_ACTIONS.md`](./OWNER_ACTIONS.md) | Clicks only you can do |
+| [`connect/PASTE_READY.md`](./connect/PASTE_READY.md) | Connect copy/paste |
+| [`legal/`](./legal/) | Privacy / Terms / Support HTML to host |
+| [`DECK_RECONCILIATION.md`](./DECK_RECONCILIATION.md) | July deck vs ship model |
+| [`APPLE_POLICY_REVIEW.md`](./APPLE_POLICY_REVIEW.md) | Guideline map |
+
+## Mobile
+
+```bash
+cd mobile
+npm start
+```
+
+Set later: `EXPO_PUBLIC_API_BASE`, `EXPO_PUBLIC_PRIVACY_URL`, `EXPO_PUBLIC_TERMS_URL`, RevenueCat key (native build).

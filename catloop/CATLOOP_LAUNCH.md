@@ -150,13 +150,11 @@ iOS (SwiftUI)
 
 ## 8. Build order
 
-0. Connect shell — agreements, SBP, app, `$1.99` intro + `$4.99` weekly  
-1. Create flow + model + ledger  
-2. StoreKit + restore  
-3. Paywall compliance  
-4. AI consent, report, privacy, delete  
-5. Metadata + review notes  
-6. US soft launch → scale only if LTV:CAC ≥ 3×  
+0. **You:** [`OWNER_ACTIONS.md`](./OWNER_ACTIONS.md) — Connect shell + SBP + host [`legal/`](./legal/)  
+1. Expo app shell in [`mobile/`](./mobile/) — flow wired; wire RevenueCat + API next  
+2. Backend ledger [`backend/src/ledger.ts`](./backend/src/ledger.ts) → deploy `/v1/generate`  
+3. Watermark burn-in for demo assets; fal/Kling behind server  
+4. TestFlight → US soft launch → scale if LTV:CAC ≥ 3×  
 
 ---
 

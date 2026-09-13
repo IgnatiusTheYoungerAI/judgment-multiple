@@ -26,7 +26,7 @@ Legend: `[ ]` = you do in Apple’s portals (we cannot click App Store Connect f
 | --- | --- |
 | Name | `CatLoop` |
 | Subtitle | `AI Cat Video Maker` |
-| Bundle ID | `com.[yourstudio].catloop` (pick once; never recycle) |
+| Bundle ID | `com.ignatiustheyoungerai.catloop` |
 | SKU (Connect internal) | `catloop-ios-001` |
 | Primary language | English (U.S.) |
 | Category | Photo & Video (primary), Entertainment (secondary) |
