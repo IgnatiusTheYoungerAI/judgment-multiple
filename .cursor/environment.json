@@ -1,0 +1,10 @@
+{
+  "name": "The Judgment Multiple + CatLoop",
+  "install": "python3 -m py_compile judgment_multiple.py\nnpm --prefix catloop install",
+  "terminals": [
+    {
+      "name": "catloop-web",
+      "command": "cd catloop && npx expo start --web --port 8081"
+    }
+  ]
+}

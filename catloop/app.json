@@ -1,0 +1,41 @@
+{
+  "expo": {
+    "name": "Catloop",
+    "slug": "catloop",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FFF7ED"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.catloop.app",
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "Catloop needs access to your photos so you can turn your cat's pictures into videos."
+      }
+    },
+    "android": {
+      "package": "com.catloop.app",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFF7ED"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Catloop needs access to your photos so you can turn your cat's pictures into videos."
+        }
+      ]
+    ]
+  }
+}
